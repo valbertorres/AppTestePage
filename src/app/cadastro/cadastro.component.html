@@ -1,0 +1,75 @@
+<div class="container">
+  
+<div class="card">
+  <div class="card-header" style="background: black; color : white">
+    <strong>Cadastro de Produto</strong>
+  </div>
+  <div class="card-block">
+      <div class="col-sm-12">
+        <form [formGroup]="cadastroFrom">
+
+          <div formGroupName="grupoForm">
+          <div class="row">
+            <div class="col-sm-3">
+              <label>Codigo do Grupo</label>
+              <input type="text" 
+              class="form-control"
+              name="codGrupo"
+              formControlName="codGrupo">
+            </div>
+
+            <div class="col-sm-9">
+              <label>Nome do Grupo</label>
+              <input type="text" 
+              class="form-control"
+              name="nomeGrupo"
+              formControlName="nomeGrupo">
+            </div>
+
+          </div>
+     </div>
+
+
+          <div class="row">
+              <div class="col-sm-3">
+                <label>Código do Produto</label>
+                <input type="text"
+                 class="form-control"
+                 name="codProduto"
+                 formControlName="codProduto">
+              </div>
+
+              <div class="col-sm-9">
+                <label>Nome do Produto</label>
+                <input type="text" 
+                class="form-control"
+                name="nomeProduto"
+                 formControlName="nomeProduto">
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-sm-8">
+                <label>marca do Produto</label>
+                <input type="text" 
+                class="form-control"
+                name="marca"
+                formControlName="marca">
+              </div>
+          </div>
+          <div style="margin-top: 10px">
+              <button type="submit" class="btn btn-primary" (click)="onSave()">Salvar</button>
+              <button class="btn btn-danger" (click)="onLogin()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<button class="btn btn-secondary" (click)="getAll()">Get</button>
+<button class="btn btn-secondary" (click)=" getCodProduto()">GetCod</button>
+{{p.nomeProduto}}
+<ul class="list-group" *ngFor="let p of produto">
+        <li class="list-group-item">{{ p.nomeProduto }} ({{p.codProduto}})</li>
+      </ul>
+</div>  
+

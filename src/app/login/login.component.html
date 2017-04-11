@@ -1,0 +1,54 @@
+
+<div class="container" style="margin-top: 100px">
+  
+<div class="row"> 
+  <div class="col-xs-6 col-sm-1"></div>
+  <div class="col-xs-8 col-sm-10">
+        <div class="card">
+            <div class="card-header" style="background: 		#5f92b8; color:white">
+              <h3 style="text-align: center">Login do Usuário</h3>
+            </div>
+                  <div class="card-block">
+                      <form class="form-group row">
+                        <div class="col-xs-12 col-md-6"> 
+                        <label for="">CNPJ</label>
+                        <input 
+                        type="text" 
+                        class="form-control"
+                        name="primeriro"
+                        ngModel> 
+                      </div>
+
+                      <div class="col-xs-12 col-md-6">
+                        <label for="">Empresa</label> 
+                      <input type="text" 
+                        class="form-control"
+                        name="terceiro"
+                        ngModel
+                        disabled>
+                        </div>
+
+                </form>
+                       <div style="text-align: center">
+                        <button type="submit" 
+                        class="btn btn-primary
+                         col-xs-12" style="margin-right: 2px; margin-bottom: 5px">Acessar</button>
+
+                        <button type="submit" 
+                        class="btn btn-secondary col-xs-12" 
+                        style="margin-right: 2px; margin-bottom: 5px" >Fazer Cadastro</button>
+                        
+                        <div>
+                        <a (click)="onCadastro()">Esqueci Minha Senha</a>
+                        </div>
+                        </div>
+            </div>
+        </div>
+  <div class="clearfix visible-xs-block"></div>
+  <div class="col-xs-6 col-sm-1"></div>
+</div>
+</div>
+
+
+
+</div>
