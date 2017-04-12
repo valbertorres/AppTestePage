@@ -15,7 +15,8 @@
               <input type="text" 
               class="form-control"
               name="codGrupo"
-              formControlName="codGrupo">
+              formControlName="codGrupo"
+              [ngModel]="">
             </div>
 
             <div class="col-sm-9">
@@ -23,7 +24,8 @@
               <input type="text" 
               class="form-control"
               name="nomeGrupo"
-              formControlName="nomeGrupo">
+              formControlName="nomeGrupo"
+              [ngModel]="">
             </div>
 
           </div>
@@ -36,7 +38,8 @@
                 <input type="text"
                  class="form-control"
                  name="codProduto"
-                 formControlName="codProduto">
+                 formControlName="codProduto"
+                 >
               </div>
 
               <div class="col-sm-9">
@@ -44,7 +47,8 @@
                 <input type="text" 
                 class="form-control"
                 name="nomeProduto"
-                 formControlName="nomeProduto">
+                 formControlName="nomeProduto"
+                 [ngModel]="produto.nomeProduto">
               </div>
           </div>
 
@@ -54,7 +58,8 @@
                 <input type="text" 
                 class="form-control"
                 name="marca"
-                formControlName="marca">
+                formControlName="marca"
+                [ngModel]="produto.marca">
               </div>
           </div>
           <div style="margin-top: 10px">
@@ -67,9 +72,9 @@
 </div>
 <button class="btn btn-secondary" (click)="getAll()">Get</button>
 <button class="btn btn-secondary" (click)=" getCodProduto()">GetCod</button>
-{{p.nomeProduto}}
-<ul class="list-group" *ngFor="let p of produto">
+<ul class="list-group" *ngFor="let p of produtos">
         <li class="list-group-item">{{ p.nomeProduto }} ({{p.codProduto}})</li>
       </ul>
 </div>  
 
+<button class="btn btn-secondary" (click)="teste()">Teste</button>

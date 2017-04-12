@@ -1,10 +1,13 @@
 
 import { GrupoModel } from './grupo.model';
 export class ProdutoModel{
+    public grupoForm : GrupoModel[];
     constructor(
-        public codProduto : number,
+        public codProduto : string,
         public nomeProduto : string,
         public marca : string,
-        public grupoFrom: GrupoModel[]  
-    ){}
+         grupoModel: GrupoModel[] 
+    ){
+        this.grupoForm = grupoModel
+    }
 }

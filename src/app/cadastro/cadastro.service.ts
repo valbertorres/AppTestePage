@@ -11,7 +11,7 @@ export class CadastroService{
 
     private url = "https://intersys-c915f.firebaseio.com/produto.json";
     private urlAppName = 'https://intersys-c915f.firebaseio.com/appName.json';
-    private urlSys ='http://186.202.61.22:8135/AUDSPED/AUDITORIA/TpVOcadcli/VOcadcli'; 
+    //private urlSys ='http://186.202.61.22:8135/AUDSPED/AUDITORIA/TpVOcadcli/VOcadcli'; 
 
     constructor(
         private http: Http,
@@ -23,8 +23,7 @@ export class CadastroService{
             'Content-Type':'application/json'
         });
        console.log(this.cadService.getProduto());
-       let s ={"type":"VOcadcli.TVOcadcli","id":1,"fields":{"ccnpj":"02\u002e299\u002e715\u002f0001-12"}};
-       return this.http.put(this.urlSys, s, {headers: headers});
+       return this.http.put(this.url, this.cadService.getProduto(), {headers: headers});
     }
 
     getAll(){
