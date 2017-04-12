@@ -15,7 +15,8 @@
               <input type="text" 
               class="form-control"
               name="codGrupo"
-              formControlName="codGrupo">
+              formControlName="codGrupo"
+              [ngModel]=gru.codGrupo>
             </div>
 
             <div class="col-sm-9">
@@ -23,7 +24,8 @@
               <input type="text" 
               class="form-control"
               name="nomeGrupo"
-              formControlName="nomeGrupo">
+              formControlName="nomeGrupo"
+              [ngModel]=gru.nomeGrupo>
             </div>
 
           </div>
@@ -44,7 +46,8 @@
                 <input type="text" 
                 class="form-control"
                 name="nomeProduto"
-                 formControlName="nomeProduto">
+                 formControlName="nomeProduto"
+                 [ngModel]="p.nomeProduto">
               </div>
           </div>
 
@@ -54,7 +57,8 @@
                 <input type="text" 
                 class="form-control"
                 name="marca"
-                formControlName="marca">
+                formControlName="marca"
+                [ngModel]="p.marca">
               </div>
           </div>
           <div style="margin-top: 10px">
@@ -65,11 +69,28 @@
       </div>
   </div>
 </div>
-<button class="btn btn-secondary" (click)="getAll()">Get</button>
-<button class="btn btn-secondary" (click)=" getCodProduto()">GetCod</button>
-{{p.nomeProduto}}
-<ul class="list-group" *ngFor="let p of produto">
-        <li class="list-group-item">{{ p.nomeProduto }} ({{p.codProduto}})</li>
-      </ul>
-</div>  
+    <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Códido do Produto</th>
+      <th>Marca do Produto</th>
+      <th>Nome do Produto</th>
+      <th>Código do Grupo</th>
+      <th>nome do Grupo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of produto">
+      <td> {{p.codProduto}} </td>
+      <td> {{p.marca}} </td>
+      <td> {{ p.nomeProduto }} </td>
+      <td> {{ p.grupoForm.codGrupo }} </td>
+      <td> {{ p.grupoForm.nomeGrupo }} </td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+ 
 

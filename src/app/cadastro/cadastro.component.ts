@@ -14,7 +14,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CadastroService } from './cadastro.service';
-import { CadService } from './cadas.service';
+import { ProdutoService } from './produto.service';
 
 import { ProdutoModel } from '../models/produto.model';
 import { GrupoModel } from '../models/grupo.model';
@@ -44,16 +44,20 @@ cadastroFrom : FormGroup;
 
       constructor(
         private cadastroService : CadastroService,
-        private cadService : CadService,  
+        private cadService : ProdutoService,  
         private router : Router
       ) { }
 
         ngOnInit() {
           this.initForm();
           this.p = new ProdutoModel(0,'','',null);
+          this.gru = new GrupoModel(0,'');
+          this.getAll();
         }
-
+    grupo : GrupoModel[];
+    gru : GrupoModel;
     produto : ProdutoModel[];
+    
       getAll(){
         this.cadastroService.getAll();
         this.produto = this.cadService.getProduto();
@@ -73,6 +77,7 @@ cadastroFrom : FormGroup;
         .subscribe(
           (produtos : ProdutoModel[])=>{
             this.p = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
+            this.gru = this.p.grupoForm;
           }
           )
       }
@@ -85,7 +90,6 @@ cadastroFrom : FormGroup;
             console.log(res);
           }
         )
-        console.log("salvou");
       }
 
       log(){

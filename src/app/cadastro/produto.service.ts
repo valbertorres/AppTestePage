@@ -5,7 +5,7 @@ import { GrupoModel } from '../models/grupo.model';
 import { ProdutoModel } from '../models/produto.model';
 
 @Injectable()
-export class CadService{
+export class ProdutoService{
     produtoChange = new  Subject<ProdutoModel[]>();
 
       produtos : ProdutoModel[] = [];

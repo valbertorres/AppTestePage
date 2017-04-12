@@ -3,7 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
-import { CadService } from './cadas.service';
+import { ProdutoService } from './produto.service';
 import { ProdutoModel } from '../models/produto.model';
 
 @Injectable()
@@ -15,36 +15,27 @@ export class CadastroService{
 
     constructor(
         private http: Http,
-        private cadService : CadService
+        private produtoService : ProdutoService
     ){}
 
     onSave(){
         const headers = new  Headers({
             'Content-Type':'application/json'
         });
-       console.log(this.cadService.getProduto());
-       let s ={"type":"VOcadcli.TVOcadcli","id":1,"fields":{"ccnpj":"02\u002e299\u002e715\u002f0001-12"}};
-       return this.http.put(this.urlSys, s, {headers: headers});
+       console.log(this.produtoService.getProduto());
+       return this.http.put(this.url, this.produtoService.getProduto(), {headers: headers});
     }
 
     getAll(){
         return this.http.get(this.url)
-       /* .map(
+        .map(
             (res : Response)=>{
             const produtos : ProdutoModel[] = res.json();
-            for(let produto of produtos){
-                if(!produto['grupoForm']){
-                    produto['grupoForm']=[]
-                    console.log(produto);
-                }
-            }
             return produtos
-        })*/
+        })
         .subscribe(
-            (res : Response)=>{
-                const produtos : ProdutoModel[] = res.json();
-                this.cadService.setProduto(produtos);
-                console.log(produtos);
+            (produto : ProdutoModel[])=>{
+                this.produtoService.setProduto(produto);
             }
         )
     }
