@@ -33,6 +33,7 @@ private subscription: Subscription;
 appName = this.cadastroService.getAppName();
 
 cadastroFrom : FormGroup;
+grupo : GrupoModel;
 
 @Input() elemento : string;
 @Output() elementChange : EventEmitter<string> = new EventEmitter();
@@ -50,6 +51,7 @@ cadastroFrom : FormGroup;
 
         ngOnInit() {
           this.initForm();
+<<<<<<< HEAD
           this.p = new ProdutoModel(0,'','',null);
           this.gru = new GrupoModel(0,'');
           this.getAll();
@@ -58,17 +60,24 @@ cadastroFrom : FormGroup;
     gru : GrupoModel;
     produto : ProdutoModel[];
     
+=======
+          this.produto = new ProdutoModel('','','',null);
+          this.grupo = new GrupoModel('','');
+        }
+
+    produto :ProdutoModel;
+    produtos : ProdutoModel[];
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
       getAll(){
         this.cadastroService.getAll();
-        this.produto = this.cadService.getProduto();
+        this.produtos = this.cadService.getProduto();
         this.subscription = this.cadService.produtoChange
         .subscribe(
           (produtos : ProdutoModel[])=>{
-            this.produto = produtos;
+            this.produtos = produtos;
           }
         );
       }
-       p :ProdutoModel;
       proCod : ProdutoModel[];
       getCodProduto(){
         this.cadastroService.getAll();
@@ -76,10 +85,22 @@ cadastroFrom : FormGroup;
         this.subscription = this.cadService.produtoChange
         .subscribe(
           (produtos : ProdutoModel[])=>{
+<<<<<<< HEAD
             this.p = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
             this.gru = this.p.grupoForm;
           }
+=======
+            this.produto = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
+           }
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
           )
+      }
+
+      teste(){
+        this.cadastroService.getAll();
+        const t = this.cadService.getProdutoCod(this.cadastroFrom.value.codProduto);
+        for(let grupo of t.grupoForm){
+        }
       }
 
     onSave(){

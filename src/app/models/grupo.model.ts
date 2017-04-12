@@ -1,7 +1,7 @@
 
 export class GrupoModel{
     constructor(
-        public codigo : number,
-        public noem : string
+        public codGrupo : string,
+        public nomeGrupo : string
     ){}
 }

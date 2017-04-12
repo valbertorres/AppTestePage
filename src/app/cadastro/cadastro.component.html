@@ -16,7 +16,11 @@
               class="form-control"
               name="codGrupo"
               formControlName="codGrupo"
+<<<<<<< HEAD
               [ngModel]=gru.codGrupo>
+=======
+              [ngModel]="">
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
             </div>
 
             <div class="col-sm-9">
@@ -25,7 +29,11 @@
               class="form-control"
               name="nomeGrupo"
               formControlName="nomeGrupo"
+<<<<<<< HEAD
               [ngModel]=gru.nomeGrupo>
+=======
+              [ngModel]="">
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
             </div>
 
           </div>
@@ -38,7 +46,8 @@
                 <input type="text"
                  class="form-control"
                  name="codProduto"
-                 formControlName="codProduto">
+                 formControlName="codProduto"
+                 >
               </div>
 
               <div class="col-sm-9">
@@ -47,7 +56,11 @@
                 class="form-control"
                 name="nomeProduto"
                  formControlName="nomeProduto"
+<<<<<<< HEAD
                  [ngModel]="p.nomeProduto">
+=======
+                 [ngModel]="produto.nomeProduto">
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
               </div>
           </div>
 
@@ -58,7 +71,11 @@
                 class="form-control"
                 name="marca"
                 formControlName="marca"
+<<<<<<< HEAD
                 [ngModel]="p.marca">
+=======
+                [ngModel]="produto.marca">
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
               </div>
           </div>
           <div style="margin-top: 10px">
@@ -69,6 +86,7 @@
       </div>
   </div>
 </div>
+<<<<<<< HEAD
     <table class="table table-hover">
   <thead>
     <tr>
@@ -93,4 +111,13 @@
 </div>
 
  
+=======
+<button class="btn btn-secondary" (click)="getAll()">Get</button>
+<button class="btn btn-secondary" (click)=" getCodProduto()">GetCod</button>
+<ul class="list-group" *ngFor="let p of produtos">
+        <li class="list-group-item">{{ p.nomeProduto }} ({{p.codProduto}})</li>
+      </ul>
+</div>  
+>>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
 
+<button class="btn btn-secondary" (click)="teste()">Teste</button>
