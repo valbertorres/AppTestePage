@@ -45,6 +45,19 @@ export class DataStorageService{
             }
         )
     }
+    private urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select "
+    +"CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco'"
+    +" else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else ''"
+    +"end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' "
+    +"else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'4";
+    getxml(){
+        const headers = new  Headers({
+            'Accept':'application/xml'
+        })
+        this.http.get(this.urlXml)
+    
+    }
+
 
     setStorage(){
         return this.http.put(this.urlFarebase, this.resultService.gerResult(),{headers : this.headers})

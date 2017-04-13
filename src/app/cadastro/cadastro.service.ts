@@ -17,18 +17,13 @@ export class CadastroService{
         private http: Http,
         private produtoService : ProdutoService
     ){}
+       
+       headers = new  Headers({
+            'Content-Type':'appliccation/json'
+       });
 
     onSave(){
-        const headers = new  Headers({
-            'Content-Type':'application/json'
-        });
-<<<<<<< HEAD
-       console.log(this.produtoService.getProduto());
-       return this.http.put(this.url, this.produtoService.getProduto(), {headers: headers});
-=======
-       console.log(this.cadService.getProduto());
-       return this.http.put(this.url, this.cadService.getProduto(), {headers: headers});
->>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
+       return this.http.put(this.url, this.produtoService.getProduto(), {headers: this.headers});
     }
 
     getAll(){
@@ -52,5 +47,22 @@ export class CadastroService{
                 return res.json();
             }
         )
+    }
+
+ private urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select "
+    +"CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco'"
+    +" else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else ''"
+    +"end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' "
+    +"else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'4";
+
+    teste(){
+        let xml ='';
+        this.http.get(this.urlXml)
+        .map(
+            (res : Response)=>res.text()
+        ).subscribe(data =>{
+            xml = data;
+            console.log(xml);
+        })
     }
 }

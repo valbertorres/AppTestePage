@@ -35,9 +35,8 @@ export class LoginComponent implements OnInit {
     private subscription : Subscription;
 
       // inicia combox com 
-      private servicos = [
-          'Selecione'
-      ];
+      private servicos;
+
       constructor(
         private fieldsService : FieldsService,
         private dataStorage : DataStorageService,
@@ -48,29 +47,50 @@ export class LoginComponent implements OnInit {
 
       loginForm : FormGroup;
 
+      onIniciaObjetos(){
+        this.fields = new Fields('','','','','','','','','','','','','','','','','','','','','','','','','','');
+      }
+
       // metodo que inicia com o DOM  
       ngOnInit() {
         document.getElementById('ccnpj').focus();
         this.initForm();
+        this.getAll();
+        this.onIniciaObjetos();
       }
 
       getAll(){
+        // 05.888.347/0040-11
+        this.dataStorage.getAll()
+        this.fieldsList = this.fieldsService.getFiels();
+        this.subscription = this.fieldsService.fielsChange
+        .subscribe(
+          (fieldes : Fields[])=>{
+            this.fieldsList = fieldes;
+          }
+        );
+      }
+      getAllCnpj(){
         // 05.888.347/0040-11
         this.dataStorage.getAll();
         this.fieldsList = this.fieldsService.getFiels();
         this.subscription = this.fieldsService.fielsChange
         .subscribe(
-          (fields : Fields[])=>{
-            this.fields = fields.find(field => field.ccnpj === this.loginForm.value.ccnpj)
-            console.log(this.fields);
+          (fieldes : Fields[])=>{
+            this.fields = fieldes.find(field => field.ccnpj === this.loginForm.value.ccnpj);
+            this.iniciarNomeEmpresa();
           }
         )
-
       }
-      
+      // preenche o nome da empresa
+      iniciarNomeEmpresa(){
+        this.ccnpj = this.fields.ccnpj;
+        this.empresa = this.fields.crazsoc;
+        this.initForm();
+      }
+
       // metodo de salva
       onSubmit(){
-        console.log("click");
         this.dataStorage.setStorage();
       }
 

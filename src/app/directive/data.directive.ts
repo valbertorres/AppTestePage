@@ -11,7 +11,7 @@ import{
   ControlValueAccessor
 }from '@angular/forms';
 
-import * as moment from 'moment';
+ import * as moment from 'moment';
  
 declare var Pikaday: any;
 

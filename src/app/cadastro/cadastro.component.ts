@@ -33,11 +33,19 @@ private subscription: Subscription;
 appName = this.cadastroService.getAppName();
 
 cadastroFrom : FormGroup;
-grupo : GrupoModel;
 
 @Input() elemento : string;
 @Output() elementChange : EventEmitter<string> = new EventEmitter();
 
+    private codGrupo ='';
+    private nomeGrupo ='';
+    private codProduto ='';
+    private nomeProduto = '';
+    private marca = '';
+        grupo : GrupoModel[];
+        gru : GrupoModel;
+    produto :ProdutoModel;
+    produtos : ProdutoModel[];
 
     ngOnChanges(changes: SimpleChanges): void {
 
@@ -51,23 +59,16 @@ grupo : GrupoModel;
 
         ngOnInit() {
           this.initForm();
-<<<<<<< HEAD
-          this.p = new ProdutoModel(0,'','',null);
-          this.gru = new GrupoModel(0,'');
+          this.gru = new GrupoModel('','');
+          this.produto = new ProdutoModel('','','',null);
           this.getAll();
         }
-    grupo : GrupoModel[];
-    gru : GrupoModel;
-    produto : ProdutoModel[];
-    
-=======
-          this.produto = new ProdutoModel('','','',null);
-          this.grupo = new GrupoModel('','');
-        }
+     
+      teste(){
+            this.cadastroService.teste();
+            console.log("clickou");
+      }
 
-    produto :ProdutoModel;
-    produtos : ProdutoModel[];
->>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
       getAll(){
         this.cadastroService.getAll();
         this.produtos = this.cadService.getProduto();
@@ -78,29 +79,27 @@ grupo : GrupoModel;
           }
         );
       }
-      proCod : ProdutoModel[];
       getCodProduto(){
         this.cadastroService.getAll();
-        this.proCod = this.cadService.getProduto();
+        this.produtos = this.cadService.getProduto();
         this.subscription = this.cadService.produtoChange
         .subscribe(
           (produtos : ProdutoModel[])=>{
-<<<<<<< HEAD
-            this.p = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
-            this.gru = this.p.grupoForm;
-          }
-=======
             this.produto = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
-           }
->>>>>>> ac3541b8458f16a144019f0c900b4e66bf152ecc
+             this.gru = this.produto.grupoForm;
+             console.log(this.gru);
+             this.inserDadosForm();
+          }
           )
       }
 
-      teste(){
-        this.cadastroService.getAll();
-        const t = this.cadService.getProdutoCod(this.cadastroFrom.value.codProduto);
-        for(let grupo of t.grupoForm){
-        }
+      inserDadosForm(){
+           this.codProduto =  this.produto.codProduto;
+           this.nomeProduto = this.produto.nomeProduto;
+           this.marca = this.produto.marca;
+           this.codGrupo = this.gru.codGrupo;
+           this.nomeGrupo = this.gru.nomeGrupo;
+           this.initForm();
       }
 
     onSave(){
@@ -123,18 +122,14 @@ grupo : GrupoModel;
       }
 
   initForm(){
-    let codGrupo ='';
-    let nomeGrupo ='';
-    let codProduto ='';
-    let nomeProduto = '';
-    let marca = '';
+    
     this.cadastroFrom = new FormGroup({
-        'codProduto' : new FormControl(codProduto),
-        'nomeProduto' : new FormControl(nomeProduto),
-        'marca' : new FormControl(marca),
+        'codProduto' : new FormControl(this.codProduto),
+        'nomeProduto' : new FormControl(this.nomeProduto),
+        'marca' : new FormControl(this.marca),
       grupoForm: new FormGroup({
-        'codGrupo' : new FormControl(codGrupo),
-        'nomeGrupo' : new FormControl(nomeGrupo),
+        'codGrupo' : new FormControl(this.codGrupo),
+        'nomeGrupo' : new FormControl(this.nomeGrupo),
       })
     });
   }
