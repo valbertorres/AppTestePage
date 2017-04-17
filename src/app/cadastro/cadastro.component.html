@@ -46,7 +46,8 @@
                 <input type="text" 
                 class="form-control"
                 name="nomeProduto"
-                 formControlName="nomeProduto">
+                 formControlName="nomeProduto"
+                 [ngModel]="razao">
               </div>
           </div>
 
@@ -92,4 +93,8 @@
 
 </div>
 
-<button class="btn btn-secondary" (click)="teste()">Xml</button>
+
+<div class="container">
+  <button class="btn btn-secondary" (click)="teste()">Xml</button>
+  <button class="btn btn-secondary" (click)="getD()" >document</button>
+</div>

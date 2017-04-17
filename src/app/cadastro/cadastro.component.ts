@@ -21,6 +21,7 @@ import { GrupoModel } from '../models/grupo.model';
 
 import { Response } from '@angular/http';
 
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -63,10 +64,28 @@ cadastroFrom : FormGroup;
           this.produto = new ProdutoModel('','','',null);
           this.getAll();
         }
-     
+      text:string;
+      razao : string;
       teste(){
-            this.cadastroService.teste();
-            console.log("clickou");
+            this.cadastroService.teste()
+            .subscribe(
+            (data : any[])=>{
+                for(let d of data ){
+                 this.text = d.fields.pDadosXML;
+                   let t = new DOMParser().parseFromString(this.text, 'text/xml');
+                  console.log(t.getElementsByTagName("cperiodo_dtfin")[0].firstChild.textContent);
+                  this.razao = t.getElementsByTagName("cperiodo_dtfin")[0].firstChild.textContent;
+                }
+   
+            }
+        )
+            
+      }
+
+      getD(){
+            this.cadastroService.d();
+                
+        
       }
 
       getAll(){
@@ -113,7 +132,7 @@ cadastroFrom : FormGroup;
       }
 
       log(){
-        console.log(this.cadastroFrom.value);
+      //  this.cadastroService.create()
         
       }
 

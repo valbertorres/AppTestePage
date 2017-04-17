@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response ,RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 
@@ -11,7 +11,7 @@ export class CadastroService{
 
     private url = "https://intersys-c915f.firebaseio.com/produto.json";
     private urlAppName = 'https://intersys-c915f.firebaseio.com/appName.json';
-    //private urlSys ='http://186.202.61.22:8135/AUDSPED/AUDITORIA/TpVOcadcli/VOcadcli'; 
+    private urlSys ='http://186.202.61.22:8135/AUDSPED/AUDITORIA/TpVOcadcli/VOcadcli'; 
 
     constructor(
         private http: Http,
@@ -40,6 +40,36 @@ export class CadastroService{
         )
     }
 
+    
+//         create(): Observable<any> {
+//      let s =  {
+//         "type": "VOcadcli_usuarios.TVOcadcli_usuarios",
+//         "id": 1,
+//         "fields": {
+//           "cucpf": "469.562.121-13",
+//           "cuemail": "VALBErrrrR",
+//           "cufone": "(62)3247-1560",
+//           "cuformapag": 0,
+//           "cuid_cliente": 30,
+//           "cunome": "LINDOMAR",
+//           "cuobs": "",
+//           "cusenha": "123",
+//           "cuseq": 1,
+//           "cuwatszapp": "",
+//           "pdatabase": ""
+//         }
+//       };
+//      let urlInter = 'http://186.202.61.22:8135/datasnap/rest/service/cliente/';
+//      let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlecoded'});
+//      let options = new RequestOptions({ headers: headers });
+
+//            console.log("teste");        
+//     return this.http.post(urlInter, JSON.stringify(s) , options)
+//   }
+
+    
+    
+
     getAppName(){
         return this.http.get(this.urlAppName)
         .map(
@@ -49,20 +79,34 @@ export class CadastroService{
         )
     }
 
- private urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select "
-    +"CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco'"
-    +" else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else ''"
-    +"end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' "
-    +"else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'4";
+private urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco' else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else '' end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'";
 
     teste(){
-        let xml ='';
-        this.http.get(this.urlXml)
+      
+       return this.http.get(this.urlXml)
         .map(
-            (res : Response)=>res.text()
-        ).subscribe(data =>{
-            xml = data;
-            console.log(xml);
-        })
+            (res : Response)=>{
+              const xml:any[] = res.json().result[0];
+              return xml;
+            }
+        )
+      
     }
+
+             d(){
+                        var urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco' else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else '' end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'";
+                            
+                        var xml = new XMLHttpRequest();
+
+                        xml.onreadystatechange = function() {
+                            if (xml.readyState === 4) {
+                             document.getElementById("teste").innerHTML = xml.responseText
+                            }
+                        }
+
+                        xml.open('GET', urlXml, false);
+                        xml.send('');
+            }
+   
+
 }

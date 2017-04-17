@@ -4,8 +4,9 @@ import { Subscription } from 'rxjs/Subscription'
 import { Router } from '@angular/router';
 
 // import de services
-import { FieldsService } from '../result/fields.service';
 import { DataStorageService } from '../result/data.storage.service';
+import { FieldsService } from '../result/fields.service';
+import { LoginDataService } from './login.data.service';
 import { ResultService } from '../result/result.service';
 
 // import de class
@@ -38,8 +39,9 @@ export class LoginComponent implements OnInit {
       private servicos;
 
       constructor(
-        private fieldsService : FieldsService,
         private dataStorage : DataStorageService,
+        private fieldsService : FieldsService,
+        private loginDataService : LoginDataService,
         private resultService : ResultService,
         private router : Router,
         private valids : ValidarCpfCnpj
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
 
       loginForm : FormGroup;
 
+      // inicia um objeto da class fields
       onIniciaObjetos(){
         this.fields = new Fields('','','','','','','','','','','','','','','','','','','','','','','','','','');
       }
@@ -87,6 +90,19 @@ export class LoginComponent implements OnInit {
         this.ccnpj = this.fields.ccnpj;
         this.empresa = this.fields.crazsoc;
         this.initForm();
+      }
+
+      // busca no banco o ccnpj valido
+      onGetCpj(){
+        let cnpj = this.loginForm.value.ccnpj;
+        let c = cnpj.substring(0,2);
+        let n = cnpj.substring(2,5);
+        let p = cnpj.substring(5,8);
+        let j = cnpj.substring(8,12);
+        let digito = cnpj.substring(12,14);
+        this.ccnpj = c+'.'+n+'.'+p+'%2F'+j+'-'+digito;
+
+
       }
 
       // metodo de salva
