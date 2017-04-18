@@ -8,16 +8,21 @@
             </div>
                   <div class="card-block">
                       <form class="form-group row" [formGroup]="loginForm">
-                        <div class="col-xs-12 col-md-6"> 
+                        <div [ngClass]="onFormGroup()"> 
                         <label for="">CNPJ</label>
                         <input 
                         type="text" 
-                        class="form-control"
+                        [ngClass]="onFormControl()"
                         name="ccnpj"
                         id="ccnpj"
+                        (keyup.enter)="onGetCpj()"
                         formControlName="ccnpj"
                         appMascara="99.999.999/9999-99"
-                      > 
+                        placeholder="__.___.___/____-__"
+                        >
+                         <div class="form-control-feedback" 
+                            *ngIf="showCnnpj"> {{cnpjInvalido}}
+                         </div>
                       </div>
 
                       <div class="col-xs-12 col-md-6">
@@ -27,14 +32,14 @@
                         name="empresa"
                         formControlName="empresa"
                         placeholder="..."
-                        >
+                        [ngModel]="empresa" >
                         </div>
 
                         <div class="col-sm-12">
                           <label for="servico">Serviço</label>
                           <select class="form-control" 
                           id="selectServico" formControlName="servico">
-                            <option *ngFor="let s of fields.cueve_dathor" > {{ s }} </option>
+                            <option *ngFor="let s of servico" > {{ s }} </option>
                           </select>
                         </div>
 
@@ -45,8 +50,9 @@
                           class="form-control"
                           name="cpf"
                           formControlName="cucpf"
-                          placeholder="000.000.000-00"
-                          appMascara="999.999.999-99"> 
+                          appMascara="999.999.999-99"
+                          placeholder="___.___.___-__"
+                          (keyup.enter)="onGetUsuario()"> 
                       </div>
 
                       <div class="col-xs-12 col-md-6">
@@ -65,7 +71,7 @@
                         class="form-control"
                         name="senha"
                         formControlName="cusenha"
-                        placeholder="Informe a senha...">
+                       >
                         </div>
 
                 </form>
@@ -78,10 +84,10 @@
 
                         <button type="submit" 
                         class="btn btn-secondary col-xs-12" 
-                        style="margin-right: 2px; margin-bottom: 5px" >Fazer Cadastro</button>
+                        style="margin-right: 2px; margin-bottom: 5px" (click)="onGetAllCnpj()">Fazer Cadastro</button>
                         
                         <div>
-                         <a style="color:blue;" (click)="onCadastro()">Esqueci Minha Senha</a>
+                         <a  style="color:blue;" routerLink="/cadastro">Esqueci Minha Senha</a>
                         </div>
                         </div>
             </div>

@@ -64,30 +64,7 @@ cadastroFrom : FormGroup;
           this.produto = new ProdutoModel('','','',null);
           this.getAll();
         }
-      text:string;
-      razao : string;
-      teste(){
-            this.cadastroService.teste()
-            .subscribe(
-            (data : any[])=>{
-                for(let d of data ){
-                 this.text = d.fields.pDadosXML;
-                   let t = new DOMParser().parseFromString(this.text, 'text/xml');
-                  console.log(t.getElementsByTagName("cperiodo_dtfin")[0].firstChild.textContent);
-                  this.razao = t.getElementsByTagName("cperiodo_dtfin")[0].firstChild.textContent;
-                }
-   
-            }
-        )
-            
-      }
-
-      getD(){
-            this.cadastroService.d();
-                
-        
-      }
-
+     
       getAll(){
         this.cadastroService.getAll();
         this.produtos = this.cadService.getProduto();
@@ -98,15 +75,15 @@ cadastroFrom : FormGroup;
           }
         );
       }
+
       getCodProduto(){
-        this.cadastroService.getAll();
-        this.produtos = this.cadService.getProduto();
-        this.subscription = this.cadService.produtoChange
+          this.cadastroService.getAll();
+          this.produtos = this.cadService.getProduto();
+          this.subscription = this.cadService.produtoChange
         .subscribe(
           (produtos : ProdutoModel[])=>{
             this.produto = produtos.find(produto => produto.codProduto === this.cadastroFrom.value.codProduto);
              this.gru = this.produto.grupoForm;
-             console.log(this.gru);
              this.inserDadosForm();
           }
           )

@@ -19,7 +19,7 @@ export class CadastroService{
     ){}
        
        headers = new  Headers({
-            'Content-Type':'appliccation/json'
+            'Content-Type':'application/json'
        });
 
     onSave(){
@@ -40,36 +40,6 @@ export class CadastroService{
         )
     }
 
-    
-//         create(): Observable<any> {
-//      let s =  {
-//         "type": "VOcadcli_usuarios.TVOcadcli_usuarios",
-//         "id": 1,
-//         "fields": {
-//           "cucpf": "469.562.121-13",
-//           "cuemail": "VALBErrrrR",
-//           "cufone": "(62)3247-1560",
-//           "cuformapag": 0,
-//           "cuid_cliente": 30,
-//           "cunome": "LINDOMAR",
-//           "cuobs": "",
-//           "cusenha": "123",
-//           "cuseq": 1,
-//           "cuwatszapp": "",
-//           "pdatabase": ""
-//         }
-//       };
-//      let urlInter = 'http://186.202.61.22:8135/datasnap/rest/service/cliente/';
-//      let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlecoded'});
-//      let options = new RequestOptions({ headers: headers });
-
-//            console.log("teste");        
-//     return this.http.post(urlInter, JSON.stringify(s) , options)
-//   }
-
-    
-    
-
     getAppName(){
         return this.http.get(this.urlAppName)
         .map(
@@ -78,35 +48,4 @@ export class CadastroService{
             }
         )
     }
-
-private urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco' else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else '' end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'";
-
-    teste(){
-      
-       return this.http.get(this.urlXml)
-        .map(
-            (res : Response)=>{
-              const xml:any[] = res.json().result[0];
-              return xml;
-            }
-        )
-      
-    }
-
-             d(){
-                        var urlXml = "http://186.202.61.22:8135/datasnap/rest/service/leituragenerica_xml/1/select CRAZSOC,CID,cperiodo_dtfin,cperiodo_dtini , case when cserv_analise_balanco='S' then 'Analise de Balanco' else '' end as analisebabalanco , case when cserv_auditar_estoque='S' then 'Auditar estoque' else '' end as auditarestoque , case when cserv_comparativo_fiscalxcontabil='S' then 'Comparativo Fiscal x Contabil' else '' end as comparativofiscalxcontabil FROM cadcli where ccnpj = '05.888.347%2F0040-11'";
-                            
-                        var xml = new XMLHttpRequest();
-
-                        xml.onreadystatechange = function() {
-                            if (xml.readyState === 4) {
-                             document.getElementById("teste").innerHTML = xml.responseText
-                            }
-                        }
-
-                        xml.open('GET', urlXml, false);
-                        xml.send('');
-            }
-   
-
 }

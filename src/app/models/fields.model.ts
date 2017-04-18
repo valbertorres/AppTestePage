@@ -10,7 +10,7 @@ export class Fields{
         public cender_log : string;
         public cender_num :string;
         public cender_uf : string;
-        public cid:string;
+        public cid : number;
         public cie : string;
         public cobs : string;
         public cpastadefault:string;
@@ -38,7 +38,7 @@ export class Fields{
          cender_log : string,
          cender_num :string,
          cender_uf : string,
-         cid:string,
+         cid:number,
          cie : string,
          cobs : string,
          cpastadefault:string,

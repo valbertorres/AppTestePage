@@ -37,11 +37,11 @@ export class ValidarCpfCnpj{
         
         validarCnpj(ccnpj : string){
             var str = ccnpj;
-          /*  str = str.replace('.','');
+            str = str.replace('.','');
             str = str.replace('.','');
             str = str.replace('.','');
             str = str.replace('-','');
-            str = str.replace('/','');*/
+            str = str.replace('/','');
             var cnpj = str;
             var numeros, digitos, soma, i, resultado, pos, tamanho, digitos_iguais;
             digitos_iguais = 1;
