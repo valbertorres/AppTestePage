@@ -99,15 +99,15 @@
         if(this.patternNumeroCNpj.test(control.value)){
             return null;
         }
-        return {'numero':true};
+        return {'cnpj':true};
       }
-      private tst : boolean = false;
+      
       private patternNumeroCpf = /^[0-9_.+-]+\.[0-9-]+\.[0-9-.]+\-[0-9-.]+$/;
       onFormValidCpf(control :FormControl):{[key : string ]:boolean}{
-        if(this.patternNumeroCNpj.test(control.value)){
+        if(this.patternNumeroCpf.test(control.value)){
             return null;
         }
-        return {'numero':true};
+        return {'cpf':true};
       }
 
       // busca no banco se o ccnpj valido
@@ -155,7 +155,6 @@
                         this.isCnpj= false;
                         this.isPristineCnpj = false;
                         this.showCnnpj=true;
-                        this.cnpjInvalido = "CNPJ não está cadastrado!";
                         this.cnpj = "";
                         this.empresa ="";
                         this.servico =[];
@@ -222,6 +221,7 @@
                         console.log(id)
                         if(id === this.cid){
                             this.isCpf = true;
+                            this.isPristineCpf = true;
                             this.showCpf = false;
                           }
                         }else{
