@@ -8,23 +8,31 @@
             </div>
                   <div class="card-block">
                       <form class="form-group row" [formGroup]="loginForm">
-                        <div [ngClass]="onFormGroup()"> 
+
+                        <!--ccnpj-->
+                        <div [ngClass]="onFormGroup(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"> 
                         <label for="">CNPJ</label>
                         <input 
                         type="text" 
-                        [ngClass]="onFormControl()"
+                        [ngClass]="onFormControl(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"
                         name="ccnpj"
                         id="ccnpj"
-                        (keyup.enter)="onGetCpj()"
+                         (keyup)="mascaraCnpj($event)"
+                        [ngModel]="cnpj"
+                        (keyup.enter)="onGetCnpj()"
+                        (blur)="onGetCnpj()"
                         formControlName="ccnpj"
-                        appMascara="99.999.999/9999-99"
                         placeholder="__.___.___/____-__"
                         >
                          <div class="form-control-feedback" 
                             *ngIf="showCnnpj"> {{cnpjInvalido}}
                          </div>
+                         <div class="form-control-feedback" 
+                            *ngIf="!loginForm.get('ccnpj').valid && loginForm.get('ccnpj').dirty">CNPJ invalido!
+                         </div>
                       </div>
 
+                      <!--nome da empresa-->
                       <div class="col-xs-12 col-md-6">
                         <label for="">Empresa</label> 
                       <input type="text" 
@@ -35,6 +43,7 @@
                         [ngModel]="empresa" >
                         </div>
 
+                        <!--preenche a comboboc com os serviços-->
                         <div class="col-sm-12">
                           <label for="servico">Serviço</label>
                           <select class="form-control" 
@@ -43,18 +52,29 @@
                           </select>
                         </div>
 
-                        <div class="col-xs-12 col-md-6"> 
+                        <!--campo cpf -->
+                        <div [ngClass]="onFormGroupCpf(loginForm.get('cucpf').valid, loginForm.get('cucpf').dirty)"> 
                         <label for="">CPF</label>
                         <input 
                           type="text" 
-                          class="form-control"
-                          name="cpf"
+                          [ngClass]="onFormControlCpf(loginForm.get('cucpf').valid, loginForm.get('cucpf').dirty)"
+                          name="cucpf"
+                          id="cucpf" 
                           formControlName="cucpf"
-                          appMascara="999.999.999-99"
+                          (keyup)="mascaraCpf($event)"
                           placeholder="___.___.___-__"
-                          (keyup.enter)="onGetUsuario()"> 
+                          (keyup.enter)="onGetUsuario()"
+                          (blur)="onGetUsuario()"
+                          [ngModel]="cpf"> 
+                          <div class="form-control-feedback" 
+                            *ngIf="showCpf"> {{cpfInvalido}}
+                         </div>
+                         <div class="form-control-feedback" 
+                            *ngIf="!loginForm.get('cucpf').valid && loginForm.get('cucpf').dirty">CPF invalido!
+                         </div>
                       </div>
 
+                      <!--complo usuario-->
                       <div class="col-xs-12 col-md-6">
                         <label for="">Usuário</label> 
                       <input type="text" 
@@ -62,9 +82,11 @@
                           name="usuario"
                           placeholder="..."
                           formControlName="usuario"
+                          [ngModel]="usuario"
                         >
                         </div>
 
+                        <!--campo senha-->
                       <div class="col-xs-12 col-sm-12">
                         <label for="">Senha</label> 
                       <input type="text" 
@@ -76,16 +98,19 @@
 
                 </form>
                        <div style="text-align: center">
+                         <!--bn acessar-->
                         <button type="submit" 
                         class="btn btn-primary
                          col-xs-12" 
                          (click)="onGetCpj()"
                          tyle="margin-right: 2px; margin-bottom: 5px">Acessar</button>
 
+                         <!--btn fazer cadastro-->
                         <button type="submit" 
                         class="btn btn-secondary col-xs-12" 
                         style="margin-right: 2px; margin-bottom: 5px" (click)="onGetAllCnpj()">Fazer Cadastro</button>
-                        
+
+                          <!--link para obter senha-->
                         <div>
                          <a  style="color:blue;" routerLink="/cadastro">Esqueci Minha Senha</a>
                         </div>

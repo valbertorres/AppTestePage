@@ -1,6 +1,7 @@
 import { Directive,
   HostListener,
-  Input
+  Input,
+  Output
  } from '@angular/core';
 import {
   NG_VALUE_ACCESSOR,

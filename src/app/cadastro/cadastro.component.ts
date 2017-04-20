@@ -6,11 +6,11 @@ import {
   OnChanges, 
   SimpleChange, 
   SimpleChanges, 
-  EventEmitter 
+  EventEmitter, 
 } from '@angular/core';
 
 import { Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { CadastroService } from './cadastro.service';
@@ -35,8 +35,10 @@ appName = this.cadastroService.getAppName();
 
 cadastroFrom : FormGroup;
 
-@Input() elemento : string;
-@Output() elementChange : EventEmitter<string> = new EventEmitter();
+    @Input() teste : string;
+    @Output() elementChange : EventEmitter<string> = new EventEmitter();
+
+    private termo : string;
 
     private codGrupo ='';
     private nomeGrupo ='';
@@ -49,7 +51,7 @@ cadastroFrom : FormGroup;
     produtos : ProdutoModel[];
 
     ngOnChanges(changes: SimpleChanges): void {
-
+        
     }
 
       constructor(
