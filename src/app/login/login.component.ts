@@ -197,6 +197,22 @@ export class LoginComponent implements OnInit{
         }
       }
 
+      onFormgroupCpf(isValid : boolean , isPristine : boolean):{}{
+          return {
+            'form-group col-xs-12 col-md-6':true,
+            'has-danger':!isValid && !isPristine,
+            'has-success' :isValid && !isPristine
+          }
+      }
+
+      onControlCpf(isValid : boolean, isPristine : boolean):{}{
+        return{
+          'form-control':true,
+          'form-control-danger': !isValid && !isPristine,
+          'form-control-success': isValid && !isPristine
+        }
+      }
+
       // preenchendo formulario para tela de login
       initForm(){
           this.loginForm = new FormGroup({
