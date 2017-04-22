@@ -16,6 +16,7 @@
               class="form-control"
               name="codGrupo"
               formControlName="codGrupo"
+              
               >
             </div>
 
@@ -47,6 +48,7 @@
                 class="form-control"
                 name="nomeProduto"
                  formControlName="nomeProduto"
+                 
                  [ngModel]="razao">
               </div>
           </div>
@@ -91,4 +93,12 @@
     <button class="btn btn-secondary" (click)="getAll()">Get</button>
     <button class="btn btn-secondary" (click)="getCodProduto()">GetCod</button>
 
+</div>
+
+<div class="container">
+  <div class="row">
+    <input type="text" name="t" [ngModel]="termo" appMascara="999.999.999-99" >
+    <input type="text" name="t"  teste="termo" >
+  </div>
+<button class="btn btn-secondary" (click)="lot()">Teste</button>
 </div>
