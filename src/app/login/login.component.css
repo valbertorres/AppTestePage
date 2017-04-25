@@ -1,0 +1,17 @@
+#div1{
+    background: black;
+    
+    height: 25px;
+}
+
+#div2{
+    background: blue;
+    right: 50%;
+    height: 25px;
+}
+
+#div3{
+    background: white;
+    right: 25%;
+    height: 25px;
+}

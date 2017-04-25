@@ -43,13 +43,8 @@
     private cpfInvalido:string;
 
     private isCnpj:boolean;
-    private cnpjInvalido:string;
-    private showCnnpj:boolean;
-    private showCpf :boolean;
-    private isCpf : boolean;
+    private isCpf:boolean;
     private isBusca : boolean;
-    private isPristineCnpj : boolean = true;
-    private isPristineCpf : boolean = true;
 
     private ccnpjAux : string;
 
@@ -114,14 +109,12 @@
       onGetCnpj(){
         if(this.loginForm.value.ccnpj === undefined){
           this.isCnpj= false;
-          this.isPristineCnpj = false;
-          this.showCnnpj=true;
           
         }else {
-          this.showCnnpj = false;
           this.ccnpj = this.loginForm.value.ccnpj;
           if(this.ccnpj != this.ccnpjAux && this.ccnpj.length==18){
-            this.isBusca = true;
+          this.ccnpj = this.ccnpj.replace("\\","/");
+          this.isBusca = true;
           this.ccnpjAux =  this.ccnpj;
           // let c = cnpj.substring(0,2);
           // let n = cnpj.substring(2,5);
@@ -129,8 +122,8 @@
           // let j = cnpj.substring(8,12);
           // let digito = cnpj.substring(12,14);
           // this.ccnpj = c+'.'+n+'.'+p+'%2F'+j+'-'+digito;
-          console.log("tests");
           let cnpj = this.ccnpj.replace('/',"%2F");
+          
 
           let data_dtfin='';
           let data_dtini='';
@@ -144,46 +137,41 @@
                     if(t.getElementsByTagName("DADOSTABELA")[0].firstChild != null){
                         this.onGetAllCnpj();
                         this.isCnpj= true;
-                        this.isPristineCnpj = true;
                         this.empresa = t.getElementsByTagName("CRAZSOC")[0].firstChild.textContent;
                         data_dtfin = t.getElementsByTagName("cperiodo_dtfin")[0].firstChild.textContent;
                         data_dtini = t.getElementsByTagName("cperiodo_dtini")[0].firstChild.textContent;
                         auditorioa = t.getElementsByTagName("auditarestoque")[0].firstChild.textContent;
                         this.servico.push(data_dtini+' á '+data_dtfin+' '+auditorioa);
                         document.getElementById('cucpf').focus();
+                        this.cnpj = this.ccnpj;
                     }else{
                         this.isCnpj= false;
-                        this.isPristineCnpj = false;
-                        this.showCnnpj=true;
                         this.cnpj = "";
                         this.empresa ="";
                         this.servico =[];
+                        this.cpf ="";
+                        this.usuario = '';
+                        this.cusenha = '';
                     }
                 }
               }
             )
           }
         }if(this.ccnpj.length !=18 ){
-             this.isCnpj= false;
-                        this.isPristineCnpj = false;
-                        this.showCnnpj=true;
-                        this.cnpj = "";
-                        this.empresa ="";
-                        this.servico =[];
+          this.ccnpjAux = "";
+            this.isCnpj= false;
+            this.cnpj = "";
+            this.empresa ="";
+            this.servico =[];
+            this.cpf ="";
+            this.usuario = '';
+            this.cusenha='';
         }
       }
 
       // busca todos cadastrdo
       onGetAllCnpj(){ 
-        //  let cnpj = this.loginForm.value.ccnpj;
-        // console.log("cnpj"+cnpj);
-          // let c = cnpj.substring(0,2);
-          // let n = cnpj.substring(2,5);
-          // let p = cnpj.substring(5,8);
-          // let j = cnpj.substring(8,12);
-          // let digito = cnpj.substring(12,14);
-          // this.ccnpj = c+'.'+n+'.'+p+'/'+j+'-'+digito;
-          
+        
           this.loginDataService.onGetAll()
           .subscribe(
             (fields : Fields[])=>{
@@ -201,17 +189,9 @@
           if(!this.isCnpj){ 
                 this.cpf ="";
                 document.getElementById('ccnpj').focus();
-                this.showCpf = true;
-                this.isPristineCpf = false;
-                this.cpfInvalido = "Informe o CNPJ!";
             }else {
                 var id;
                 this.cucpf = this.loginForm.value.cucpf;
-                // let c = this.cucpf.substring(0,3);
-                // let p = this.cucpf.substring(3,6);
-                // let f = this.cucpf.substring(6,9);
-                // let digito = this.cucpf.substring(9,11);
-                // this.cucpf = c+"."+p+"."+f+"-"+digito;
                 this.loginDataService.onGerUsuario()
                 .subscribe(
                   (fields : UsuarioModel[])=>{
@@ -220,21 +200,30 @@
                         id = this.usuarios.cuid_cliente;
                         console.log(id)
                         if(id === this.cid){
-                            this.isCpf = true;
-                            this.isPristineCpf = true;
-                            this.showCpf = false;
+                          this.isCpf = true;
+                            this.usuario = this.usuarios.cunome;document.getElementById("senha").focus();
                           }
                         }else{
                             this.cpf ="";
-                            this.isPristineCpf = false;
-                            this.isCpf = false;
-                            this.showCpf = true;
+                            this.usuario = '';
+                            this.cusenha = '';
                             this.cpfInvalido = "CPF não cadastrado!";
                         }
                     }
                 )
               }
         }
+
+        onLogar(){
+          if(this.isCpf){
+           
+                if(this.usuarios.cusenha === this.loginForm.value.cusenha){
+                    console.log(this.usuarios.cusenha);
+                }else{
+                  this.cusenha = '';
+                }
+            }
+      }
 
         // mascara cnpj
         private cnpj : string;
@@ -264,9 +253,10 @@
       private cpf : string;
       mascaraCpf(event : any){
         this.cpf = event.target.value;
-        this.cpf= this.cpf.replace(/(\d{3})(\d)/,"$1.$2");  
-        this.cpf= this.cpf.replace(/(\d{3})(\d)/,"$1.$2"); 
-        this.cpf= this.cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+        this.cpf = this.cpf.replace(/^(\d{3})(\d)/,"$1.$2"); 
+        this.cpf = this.cpf.replace(/^(\d{3})\.(\d{3})(\d)/,"$1.$2.$3");
+        this.cpf = this.cpf.replace(/(\d{3})(\d)/,"$1-$2");
+
         setTimeout(()=>{
           this.cpf = this.cpf.trim();
         },1)
@@ -282,39 +272,23 @@
         this.router.navigate(['/cadastro']);
       }
 
-      // montar as class style
-      onFormGroup(isValid : boolean, isDityr : boolean):{}{
-          return {
-            'form-group col-xs-12 col-md-6' : true,
-              'has-danger' : !this.isCnpj && !this.isPristineCnpj || !isValid && isDityr,
-              'has-success' : this.isCnpj ||  isValid && isDityr,
-            }
-      }
-
-      // varifica os estado do input
-      onFormControl(isValid : boolean, isDityr : boolean):{}{
-        return{
-          'form-control':true,
-          'form-control-danger': !this.isCnpj && !this.isPristineCnpj || !isValid && isDityr,
-          'form-control-success' : this.isCnpj ||  isValid && isDityr,
-        }
-      }
-
-        onFormGroupCpf(isValid : boolean, isDityr : boolean):{}{
-          return {
-            'form-group col-xs-12 col-md-6':true,
-            'has-danger': !this.isCpf && !this.isPristineCpf || !isValid && isDityr,
-            'has-success': this.isCpf ||  isValid && isDityr,
+      onFomrGroup(isValid :boolean , isDirty : boolean):{}{
+          return{
+            'form-group':true,
+            'has-danger': !this.isCnpj && isDirty || !isValid && isDirty,
+            'has-success':isValid && isDirty,
+            'col-xs-12 col-md-6':true
           }
       }
 
-      onFormControlCpf(isValid : boolean, isDityr : boolean):{}{
-          return {
-            'form-control':true,
-            'form-control-danger': !this.isCpf && !this.isPristineCpf || !isValid && isDityr,
-            'form-control-success': this.isCpf ||  isValid && isDityr,
+      onFomrControl(isValid :boolean , isDirty : boolean):{}{
+          return{
+            'form-control ':true,
+            'form-control-danger':  !this.isCnpj && isDirty || !isValid && isDirty,
+            'form-control-success': isValid && isDirty,
           }
       }
+
 
       // preenchendo formulario para tela de login
       initForm(){

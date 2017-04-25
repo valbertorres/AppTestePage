@@ -15,7 +15,6 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { CadastroService } from './cadastro/cadastro.service';
 import { FieldsService } from './result/fields.service';
 import { LoginDataService } from './login/login.data.service';
-import { ProdutoService } from './cadastro/produto.service';
 import { UsuarioService } from './result/usuario.service';
 import { ResultService } from './result/result.service';
 import { DataStorageService } from './result/data.storage.service';
@@ -48,7 +47,6 @@ import { ValidarCpfCnpj } from './valids/validar-cpf-cnpj.service';
     LoginDataService,
     CadastroService,
     DataStorageService,
-    ProdutoService,
     UsuarioService,
     ResultService,
     ValidarCpfCnpj],

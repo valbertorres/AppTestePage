@@ -10,24 +10,20 @@
                       <form class="form-group row" [formGroup]="loginForm">
 
                         <!--ccnpj-->
-                        <div [ngClass]="onFormGroup(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"> 
+                        <div [ngClass]="onFomrGroup(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"> 
                         <label for="">CNPJ</label>
                         <input 
                         type="text" 
-                        [ngClass]="onFormControl(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"
+                        [ngClass]="onFomrControl(loginForm.get('ccnpj').valid,loginForm.get('ccnpj').dirty)"
                         name="ccnpj"
                         id="ccnpj"
                          (keyup)="mascaraCnpj($event)"
                         [ngModel]="cnpj"
                         (keyup.enter)="onGetCnpj()"
-                        (blur)="onGetCnpj()"
                         formControlName="ccnpj"
                         placeholder="__.___.___/____-__"
                         >
-                         <div class="form-control-feedback" 
-                            *ngIf="showCnnpj"> {{cnpjInvalido}}
-                         </div>
-                         <div class="form-control-feedback" 
+                          <div class="form-control-feedback" 
                             *ngIf="!loginForm.get('ccnpj').valid && loginForm.get('ccnpj').dirty">CNPJ invalido!
                          </div>
                       </div>
@@ -53,24 +49,20 @@
                         </div>
 
                         <!--campo cpf -->
-                        <div [ngClass]="onFormGroupCpf(loginForm.get('cucpf').valid, loginForm.get('cucpf').dirty)"> 
+                        <div [ngClass]="onFomrGroup(loginForm.get('cucpf').valid,loginForm.get('cucpf').dirty)"> 
                         <label for="">CPF</label>
                         <input 
                           type="text" 
-                          [ngClass]="onFormControlCpf(loginForm.get('cucpf').valid, loginForm.get('cucpf').dirty)"
+                          [ngClass]="onFomrControl(loginForm.get('cucpf').valid,loginForm.get('cucpf').dirty)"
                           name="cucpf"
                           id="cucpf" 
                           formControlName="cucpf"
                           (keyup)="mascaraCpf($event)"
                           placeholder="___.___.___-__"
                           (keyup.enter)="onGetUsuario()"
-                          (blur)="onGetUsuario()"
                           [ngModel]="cpf"> 
-                          <div class="form-control-feedback" 
-                            *ngIf="showCpf"> {{cpfInvalido}}
-                         </div>
-                         <div class="form-control-feedback" 
-                            *ngIf="!loginForm.get('cucpf').valid && loginForm.get('cucpf').dirty">CPF invalido!
+                        <div class="form-control-feedback" 
+                            *ngIf="!loginForm.get('ccnpj').valid && loginForm.get('ccnpj').dirty">CPF invalido!
                          </div>
                       </div>
 
@@ -87,13 +79,19 @@
                         </div>
 
                         <!--campo senha-->
-                      <div class="col-xs-12 col-sm-12">
+                      <div [ngClass]="onFomrGroup(loginForm.get('cusenha').valid,loginForm.get('cusenha').dirty)"> 
                         <label for="">Senha</label> 
-                      <input type="text" 
-                        class="form-control"
-                        name="senha"
+                      <input type="password" 
+                        [ngClass]="onFomrControl(loginForm.get('cusenha').valid,loginForm.get('cusenha').dirty)"
+                        name="cusenha"
                         formControlName="cusenha"
+                        [ngModel]="cusenha"
+                        id="senha"
+                        (keyup.enter)="onLogar()"
                        >
+                       <div class="form-control-feedback" 
+                            *ngIf="!loginForm.get('cusenha').valid && loginForm.get('cusenha').dirty">Senha invalido!
+                         </div>
                         </div>
 
                 </form>
@@ -108,7 +106,7 @@
                          <!--btn fazer cadastro-->
                         <button type="submit" 
                         class="btn btn-secondary col-xs-12" 
-                        style="margin-right: 2px; margin-bottom: 5px" (click)="onGetAllCnpj()">Fazer Cadastro</button>
+                        style="margin-right: 2px; margin-bottom: 5px" (click)="onCadastro()">Fazer Cadastro</button>
 
                           <!--link para obter senha-->
                         <div>

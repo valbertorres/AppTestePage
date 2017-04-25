@@ -1,104 +1,158 @@
-<div class="container">
-  
-<div class="card">
-  <div class="card-header" style="background: black; color : white">
-    <strong>Cadastro de Produto</strong>
-  </div>
-  <div class="card-block">
-      <div class="col-sm-12">
-        <form [formGroup]="cadastroFrom">
+<div class="container-fluid" style = "background:			#77aaff">
+<div class="container" >
+  <div class="card">
+    <div class="card-header" style="background:#3b5998; color:  white ;text-align: center">
+      <h4>CADASTRO DE EMPRESA</h4>
+    </div>
+    <div class="card-block">
+      <form class="form-group row">
+              <!--senha-->
+            <div class="col-xs-12 col-md-6">
+                <label for="senha">Senha*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="senha"
+                  placeholder="Infome senha para acesso ..."
+                  id="senha"
+                  >
+              </div>
 
-          <div formGroupName="grupoForm">
-          <div class="row">
-            <div class="col-sm-3">
-              <label>Codigo do Grupo</label>
-              <input type="text" 
-              class="form-control"
-              name="codGrupo"
-              formControlName="codGrupo"
-              
-              >
+              <!--cnpj-->
+            <div class="col-xs-12 col-md-6">
+                <label for="cnpj">CNPJ*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="cnpj"
+                  placeholder="Infome CNPJ  ..."
+                  id="cnpj"
+                  >
+              </div>
+              <!--razao Social-->
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+                <label for="razao">Razão Social</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="razao"
+                  placeholder="Nome Razão Social  ..."
+                  id="razao"
+                  >
+              </div>
+
+              <!--cep-->
+            <div class="col-xs-12 col-md-5" style="margin-top: 10px">
+                <label for="cep">CEP*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="cep"
+                  placeholder="Informe o cep  ..."
+                  id="cep"
+                  >
+              </div>
+              <!--numero-->
+            <div class="col-xs-12 col-md-4" style="margin-top: 10px">
+                <label for="numero">Nº*</label> 
+                  <input type="number" 
+                  class="form-control"
+                  name="cep"
+                  placeholder="Número ..."
+                  id="numero"
+                  >
+              </div>
+
+              <!--logradoura-->
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+                <label for="logradoura">Logradoura</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="logradoura"
+                  placeholder="Logradoura ..."
+                  id="logradoura"
+                  >
+              </div>
+
+              <!--Complementos-->
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+                <label for="complementos">Complementos</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="complementos"
+                  placeholder="Complemento do endereço ..."
+                  id="complementos"
+                  >
+              </div>
+              <!--bairro-->
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+                <label for="bairro">Bairro*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="bairro"
+                  placeholder="Informe o bairro ..."
+                  id="bairro"
+                  >
+              </div>
+
+              <!--codigo cidade-->
+            <div class="col-xs-12 col-md-3" style="margin-top: 10px">
+                <label for="codCidade">Código da Cidade*</label> 
+                  <input type="number" 
+                  class="form-control"
+                  name="codCidade"
+                  placeholder="..."
+                  id="codCidade"
+                  >
+              </div>
+
+              <!--cidade-->
+            <div class="col-xs-12 col-md-6" style="margin-top: 10px">
+                <label for="cidade">Cidade*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="cidade"
+                  placeholder="Informe a cidade ..."
+                  id="cidade"
+                  >
+              </div>
+              <!--uf-->
+            <div class="col-xs-12 col-md-3" style="margin-top: 10px">
+                <label for="uf">UF*</label> 
+                  <input type="text" 
+                  class="form-control"
+                  name="uf"
+                  placeholder=" ..."
+                  id="uf"
+                  >
+              </div>
+
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px; background:#3b5998; color:  white ;" >
+                <p>
+                <h6 style="text-align: center; height: 30px;">
+                  SERVIÇOS A SERREM COTADOS</h6>
             </div>
 
-            <div class="col-sm-9">
-              <label>Nome do Grupo</label>
-              <input type="text" 
-              class="form-control"
-              name="nomeGrupo"
-              formControlName="nomeGrupo">
+            <div class="col-xs-12 col-md-12" style="margin-top: 10px">
+              <div class="card mb-3 ">
+              <div class="card-block"> <div class="col-xs-12 col-md-12" >
+                    <div class="col-lg-12" >
+                      <!--combobox -->
+                      <div class="row">
+                        <div class="col"></div>
+                        <div class="col-sm-9">
+                         <div class="form-check form-check-inline" *ngFor="let audio of auditoraCheck" id="checkAuditoria">
+                          <label class="form-check-label" >
+                            <input class="form-check-input" type="checkbox"  ><strong>{{audio}}</strong>
+                          </label>
+                        </div>                        
+
+                        </div>
+                        <div class="col"></div>
+                      </div>
+                    </div>
+                   </div>
+              </div>
             </div>
-
-          </div>
-     </div>
-
-
-          <div class="row">
-              <div class="col-sm-3">
-                <label>Código do Produto</label>
-                <input type="text"
-                 class="form-control"
-                 name="codProduto"
-                 formControlName="codProduto"
-                 >
-              </div>
-
-              <div class="col-sm-9">
-                <label>Nome do Produto</label>
-                <input type="text" 
-                class="form-control"
-                name="nomeProduto"
-                 formControlName="nomeProduto"
-                 
-                 [ngModel]="razao">
-              </div>
-          </div>
-
-          <div class="row">
-              <div class="col-sm-8">
-                <label>marca do Produto</label>
-                <input type="text" 
-                class="form-control"
-                name="marca"
-                formControlName="marca">
-              </div>
-          </div>
-          <div style="margin-top: 10px">
-              <button type="submit" class="btn btn-primary" (click)="onSave()">Salvar</button>
-              <button class="btn btn-danger" (click)="onLogin()">Cancelar</button>
-          </div>
-        </form>
-      </div>
+            </div>
+      </form> 
+    </div>
   </div>
 </div>
-    <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Códido do Produto</th>
-      <th>Marca do Produto</th>
-      <th>Nome do Produto</th>
-      <th>Código do Grupo</th>
-      <th>nome do Grupo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of produtos">
-      <td> {{p.codProduto}} </td>
-      <td> {{p.marca}} </td>
-      <td> {{ p.nomeProduto }} </td>
-      <td> {{ p.grupoForm.codGrupo }} </td>
-      <td> {{ p.grupoForm.nomeGrupo }} </td>
-    </tr>
-  </tbody>
-</table>
-    <button class="btn btn-secondary" (click)="getAll()">Get</button>
-    <button class="btn btn-secondary" (click)="getCodProduto()">GetCod</button>
-
-</div>
-
-<div class="container">
-  <div class="row">
-    <input type="text" name="t" [ngModel]="termo" appMascara="999.999.999-99" >
-    <input type="text" name="t"  teste="termo" >
-  </div>
-<button class="btn btn-secondary" (click)="lot()">Teste</button>
 </div>
