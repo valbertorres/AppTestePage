@@ -1,10 +1,8 @@
-<div class="container-fluid" style = "background:			#77aaff">
 <div class="container" >
-  <div class="card">
-    <div class="card-header" style="background:#3b5998; color:  white ;text-align: center">
+    <div class="card-header">
       <h4>CADASTRO DE EMPRESA</h4>
     </div>
-    <div class="card-block">
+    <div id="form">
       <form class="form-group row">
               <!--senha-->
             <div class="col-xs-12 col-md-6">
@@ -12,7 +10,7 @@
                   <input type="text" 
                   class="form-control"
                   name="senha"
-                  placeholder="Infome senha para acesso ..."
+                  placeholder=" ..."
                   id="senha"
                   >
               </div>
@@ -23,8 +21,11 @@
                   <input type="text" 
                   class="form-control"
                   name="cnpj"
-                  placeholder="Infome CNPJ  ..."
+                  placeholder="__.___.___/____-__"
                   id="cnpj"
+                  (keyup.enter)="onValidarCnpj()"
+                  (keyup)="onMascaraCnpj($event)"
+                  [(ngModel)]="cnpj"
                   >
               </div>
               <!--razao Social-->
@@ -33,8 +34,9 @@
                   <input type="text" 
                   class="form-control"
                   name="razao"
-                  placeholder="Nome Razão Social  ..."
+                  placeholder=" ..."
                   id="razao"
+                  [(ngModel)]="dadosCnpj.nome"
                   >
               </div>
 
@@ -44,18 +46,21 @@
                   <input type="text" 
                   class="form-control"
                   name="cep"
-                  placeholder="Informe o cep  ..."
-                  id="cep"
+                  placeholder="_____-___"
+                  id="cep"[(ngModel)]="dadosCnpj.cep"
+                  (keyup.enter)="log()"
+                  (keyup)="onMascaraCep($event)"
                   >
               </div>
               <!--numero-->
             <div class="col-xs-12 col-md-4" style="margin-top: 10px">
                 <label for="numero">Nº*</label> 
-                  <input type="number" 
+                  <input type="text" 
                   class="form-control"
-                  name="cep"
-                  placeholder="Número ..."
+                  name="numero"
+                  placeholder="..."
                   id="numero"
+                  [(ngModel)]="dadosCnpj.numero"
                   >
               </div>
 
@@ -65,8 +70,9 @@
                   <input type="text" 
                   class="form-control"
                   name="logradoura"
-                  placeholder="Logradoura ..."
+                  placeholder=" ..."
                   id="logradoura"
+                  [(ngModel)]="dadosCnpj.logradouro"
                   >
               </div>
 
@@ -76,8 +82,9 @@
                   <input type="text" 
                   class="form-control"
                   name="complementos"
-                  placeholder="Complemento do endereço ..."
+                  placeholder="..."
                   id="complementos"
+                  [(ngModel)]="dadosCnpj.complemento"
                   >
               </div>
               <!--bairro-->
@@ -86,8 +93,9 @@
                   <input type="text" 
                   class="form-control"
                   name="bairro"
-                  placeholder="Informe o bairro ..."
+                  placeholder=" ..."
                   id="bairro"
+                  [(ngModel)]="dadosCnpj.bairro"
                   >
               </div>
 
@@ -99,6 +107,7 @@
                   name="codCidade"
                   placeholder="..."
                   id="codCidade"
+                  [(ngModel)]="codCidade"
                   >
               </div>
 
@@ -108,8 +117,9 @@
                   <input type="text" 
                   class="form-control"
                   name="cidade"
-                  placeholder="Informe a cidade ..."
+                  placeholder=" ..."
                   id="cidade"
+                  [(ngModel)]="dadosCnpj.municipio"
                   >
               </div>
               <!--uf-->
@@ -120,10 +130,11 @@
                   name="uf"
                   placeholder=" ..."
                   id="uf"
+                  [(ngModel)]="dadosCnpj.uf"
                   >
               </div>
 
-            <div class="col-xs-12 col-md-12" style="margin-top: 10px; background:#3b5998; color:  white ;" >
+            <div class="col-xs-12 col-md-12" id="headerServico" >
                 <p>
                 <h6 style="text-align: center; height: 30px;">
                   SERVIÇOS A SERREM COTADOS</h6>
@@ -153,6 +164,5 @@
             </div>
       </form> 
     </div>
-  </div>
-</div>
+    <button class="btn btn-primary" (click)="onGetWebServiceCnpj()">Consultar</button>
 </div>

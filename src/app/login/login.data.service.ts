@@ -90,7 +90,7 @@ export class LoginDataService{
         ).catch(
             (error : Response)=>{
                 console.log(error);
-                return Observable.throw(error);
+                return Observable.throw("error "+error);
             }
         )
     }

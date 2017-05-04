@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sx-12 col-sm-12" id="animacao">
+      <h1>Animações</h1>
+    <button class="btn btn-primary" (click)="onAnimatio()">Animar</button>
+    <button class="btn btn-primary" (click)="onShurink()">Mudar</button>
+    <hr>
+        <div style="width:100px; height:100px"
+          [@divState]="state">
+        </div>
+        <p>
+        <div style="width:100px; height:100px"
+          [@wildState]="wildState">
+        </div>
+    </div>
+    </div>
+    <hr>
+  <div class="row">
+    <div class="col-sx-12 col-sm-12" >
+      <div class="col-md-6">
+        <input class="form-control" type="text" #input autofocus>
+      <button class="btn btn-primary" (click)="onAdd(input.value)">Add item</button>
+      </div>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item" [@list1] *ngFor="let item of lista" (click)="onDelete(item)">{{item}}</li>
+      </ul>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let item of lista" (click)="onDelete(item)">{{item}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="container">
+  <div id="topo"></div>
+  <div id="corpo"></div>
+  <div id="footer"></div>
+</div>

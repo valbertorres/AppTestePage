@@ -1,0 +1,45 @@
+/*#divContainer{
+    width: 100%;
+    max-width: 1200px;
+    height: 100px;
+    background: gray;
+    margin: auto;
+
+}
+
+#corpo{
+    width: 100%;
+    height: 500px;
+    background: grey;
+    margin: auto;
+}
+
+#divTopo1{
+    background: blue;
+    width : 50%;
+    height: 100px;
+    float: left;
+}
+#divTopo2{
+    width : 50%;
+    height: 100px;
+    background: green;
+    float: left;
+}
+
+@media only screen and (max-width:400px){
+    #topo{
+        height: 200px;
+    }
+    #divTopo1{
+        width:100%;
+    }
+    #divTopo2{
+        width:100%;
+    }
+}*/
+
+#animation{
+    width : 100px;
+    height: 100px;
+}

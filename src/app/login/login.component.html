@@ -18,7 +18,7 @@
                         name="ccnpj"
                         id="ccnpj"
                          (keyup)="mascaraCnpj($event)"
-                        [ngModel]="cnpj"
+                        [(ngModel)]="cnpj"
                         (keyup.enter)="onGetCnpj()"
                         formControlName="ccnpj"
                         placeholder="__.___.___/____-__"
@@ -57,12 +57,12 @@
                           name="cucpf"
                           id="cucpf" 
                           formControlName="cucpf"
+                          (keyup.enter)="onGetUsuario()"
                           (keyup)="mascaraCpf($event)"
                           placeholder="___.___.___-__"
-                          (keyup.enter)="onGetUsuario()"
-                          [ngModel]="cpf"> 
+                          [(ngModel)]="cpf"> 
                         <div class="form-control-feedback" 
-                            *ngIf="!loginForm.get('ccnpj').valid && loginForm.get('ccnpj').dirty">CPF invalido!
+                            *ngIf="!loginForm.get('cucpf').valid && loginForm.get('cucpf').dirty">CPF invalido!
                          </div>
                       </div>
 
@@ -85,9 +85,10 @@
                         [ngClass]="onFomrControl(loginForm.get('cusenha').valid,loginForm.get('cusenha').dirty)"
                         name="cusenha"
                         formControlName="cusenha"
-                        [ngModel]="cusenha"
+                        [(ngModel)]="cusenha"
                         id="senha"
                         (keyup.enter)="onLogar()"
+                        placeholder="..."
                        >
                        <div class="form-control-feedback" 
                             *ngIf="!loginForm.get('cusenha').valid && loginForm.get('cusenha').dirty">Senha invalido!
@@ -101,7 +102,7 @@
                         class="btn btn-primary
                          col-xs-12" 
                          (click)="onGetCpj()"
-                         tyle="margin-right: 2px; margin-bottom: 5px">Acessar</button>
+                         style="margin-right: 2px; margin-bottom: 5px">Acessar</button>
 
                          <!--btn fazer cadastro-->
                         <button type="submit" 
@@ -110,7 +111,7 @@
 
                           <!--link para obter senha-->
                         <div>
-                         <a  style="color:blue;" routerLink="/cadastro">Esqueci Minha Senha</a>
+                         <a  style="color:blue;" routerLink="/lembrasenha">Esqueci Minha Senha</a>
                         </div>
                         </div>
             </div>

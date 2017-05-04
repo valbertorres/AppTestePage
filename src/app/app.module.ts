@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-
+import { HttpModule,JsonpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 // Routings
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,6 +24,7 @@ import { MascaraDirective } from './directive/mascara.directive';
 
 // import de valids
 import { ValidarCpfCnpj } from './valids/validar-cpf-cnpj.service';
+import { LembraSenhaComponent } from './lembra-senha/lembra-senha.component';
 
 
 @NgModule({
@@ -31,14 +32,17 @@ import { ValidarCpfCnpj } from './valids/validar-cpf-cnpj.service';
     AppComponent,
     CadastroComponent,
     MascaraDirective,
-    LoginComponent
+    LoginComponent,
+    LembraSenhaComponent,
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JsonpModule,
+    BrowserAnimationsModule
   ],
   exports : [FormsModule],
 
